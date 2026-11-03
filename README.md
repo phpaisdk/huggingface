@@ -1,12 +1,6 @@
-# aisdk/huggingface
+# PHP AI SDK — Hugging Face
 
-<a href="https://github.com/phpaisdk/huggingface/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/phpaisdk/huggingface/tests.yml?branch=main&label=Tests"></a>
-<a href="https://packagist.org/packages/aisdk/huggingface"><img alt="Latest Version" src="https://img.shields.io/packagist/v/aisdk/huggingface"></a>
-<a href="https://packagist.org/packages/aisdk/huggingface"><img alt="License" src="https://img.shields.io/packagist/l/aisdk/huggingface"></a>
-
-------
-
-Official Hugging Face provider for the PHP AI SDK. Uses Hugging Face Inference Providers' OpenAI-compatible router.
+Text generation, streaming, and tool calling through Hugging Face Inference Providers. Part of the framework-agnostic [PHP AI SDK](https://phpaisdk.com).
 
 ## Installation
 
@@ -14,36 +8,27 @@ Official Hugging Face provider for the PHP AI SDK. Uses Hugging Face Inference P
 composer require aisdk/huggingface
 ```
 
-## Basic Usage
+Set `HF_TOKEN` in your environment.
+
+## Usage
 
 ```php
 use AiSdk\Generate;
 use AiSdk\HuggingFace;
 
-HuggingFace::create(['apiKey' => $_ENV['HF_TOKEN']]);
-
-$result = Generate::text('Explain this code briefly.')
-    ->model(HuggingFace::model('openai/gpt-oss-120b:fastest'))
+$result = Generate::text('Explain closures in PHP in one sentence.')
+    ->model(HuggingFace::model('deepseek-ai/DeepSeek-V4.1-Flash-1017:fastest'))
     ->run();
+
+echo $result->text;
 ```
-
-## Configuration
-
-| Variable | Description | Default |
-| --- | --- | --- |
-| `HF_TOKEN` | Hugging Face access token | Required |
-| `HUGGINGFACE_BASE_URL` | Base URL for API requests | `https://router.huggingface.co/v1` |
-
-## Supported Capabilities
-
-| Capability | Support |
-| --- | --- |
-| Text generation and streaming | Native OpenAI-compatible router |
-| Tool calling, structured output, reasoning, image input | Passed through for supported routed models |
-
-The OpenAI-compatible router package is chat-only. Use a Hugging Face native client for other task types. Use `providerOptions('huggingface', ['raw' => [...]])` for native router fields.
 
 ## Documentation
 
-- [Hugging Face Inference Providers documentation](https://huggingface.co/docs/inference-providers/en/index)
-- [PHP AI SDK documentation](https://phpaisdk.com/docs/huggingface)
+[Read the documentation](https://phpaisdk.com/docs/0.x/providers/huggingface) for configuration, supported features, and more examples.
+
+[Contributing](https://github.com/phpaisdk/.github/blob/main/CONTRIBUTING.md) · [Support](https://github.com/phpaisdk/.github/blob/main/SUPPORT.md)
+
+## License
+
+The MIT License (MIT). See [LICENSE](LICENSE) for details.
